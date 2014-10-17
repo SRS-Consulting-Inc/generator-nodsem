@@ -128,19 +128,19 @@ This generator will support unit testing for emberjs frame work.Their will be te
 Navigate to the project folder and run grunt analyze then three folder will generate in your project
 
 > 
-##### 1. `docs` folder
+ 1. `docs` folder
 
 > 
 This folder will have documentation of the project created.
 
 > 
-##### 2. `report` folder
+ 2. `report` folder
 
 > 
 This folder will have code analysis for your project.
 
 > 
-##### 3. `coverage` folder
+ 3. `coverage` folder
 
 > 
 This folder is generated inside test folder , it will give information about code coverage of your project.
@@ -160,7 +160,10 @@ Mongodb: default port is 27100
 After the project is generated,the project will run on [http://localhost:3000](http://localhost:3000)
 
 > 
-Contact
+##### Contact
 * * *
+>
 Prashanth Karnam <prashanthk@srsconsultinginc.com>
+
+> 
 Pradeep M <pradeepm@srsconsultinginc.com>
