@@ -35,7 +35,7 @@ Layer | Available Option
 *UI* | `Semantic/Bootstrap`
 *MVM/MVVM* | `Ember/Angular`
 *Data Base* | `Mongo / Mysql / Sqlite`
-*Test* | `Mocha,Grunt,qunit(for Ember)` 
+*Test* | `Mocha,Grunt,Qunit(for Ember)` 
 *Code Analysis* | `Plato`
 *Documentation* | `Doccu`
 *Code Coverage* | `Instanbul`
