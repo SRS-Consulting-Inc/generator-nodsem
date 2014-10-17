@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Semantic UI Sign In/Sign Up Form</title>
+ 
+  <link href="css/libs/semantic.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="css/libs/normalize.css">
+ 
+  <style type="text/css">
+ *{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 60px;
+}
+
+.ui.grid.main{
+  margin-top: 70px;
+}
+
+
+.mobile.row{
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+}
+
+.mobile.row .ui.inverted.menu{
+  border-radius: 0px !important;
+}
+
+.padding-reset{
+  padding: 0px !important;
+}
+
+.ui.message{
+  padding: 40px !important;
+}
+
+@media (max-width: 767px) {
+    .ui.grid.main{
+      margin-top: 70px;
+  }
+  .ui.vertical.menu.navbar{
+    margin-top: 0px !important;
+  }
+}
+
+.ui.vertical.menu{
+  margin-top: -15px !important;
+  width: 100%;
+  display: none;
+}
+  </style> 
+ 
+</head>
+<body>
+
+ <script type="text/x-handlebars" >
+    {{outlet}}
+  </script>
+ 
+<script type="text/x-handlebars" id="signin">
+<div class="ui three column grid">
+  <div class="column">
+  </div>
+  <div class="column">
+    <div class="ui fluid form segment">
+      <h3 class="ui header">Log-in</h3><span style="color:red;" id="validatemessage"></span>
+      <div class="field">
+        <label>Email</label>
+        <input type="text" placeholder="Email" id="signinemail">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" placeholder="Password" id="signinpassword">
+      </div>
+      <div class="ui blue submit button" id="signin-btn" {{action 'signinclick'}}>Login</div>
+      <a href="#">{{#link-to 'signup'}}Not registered Sign up{{/link-to}}</a>
+    </div>
+  </div>
+  <div class="column">
+  </div>
+</div> 
+ </script>
+
+<script type="text/x-handlebars" id="signup">
+<div class="ui three column grid">
+  <div class="column">
+  </div>
+  <div class="column">
+    <div class="ui fluid form segment">
+      <h3 class="ui header">Signup</h3><span style="color:red;" id="validatemessage"></span>
+      <div class="field">
+        <label>Name</label>
+        <input type="text" placeholder="Name" id="name">
+      </div>
+      <div class="field">
+        <label>Username</label>
+        <input type="text" placeholder="Username" id="username">
+      </div>
+       <div class="field">
+        <label>Email</label>
+        <input type="text" placeholder="Email" id="email">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" placeholder="Password" id="password">
+      </div>
+      <div class="ui blue submit button" id="signup-btn" {{action 'signupclick'}}>Sign up</div>
+     <a href="#">{{#link-to 'signin'}}Already a member Sign in{{/link-to}}</a>
+    </div>
+  </div>
+  <div class="column">
+  </div>
+</div>
+</script>
+
+
+<script type="text/x-handlebars" id="home">
+    <div class="ui grid">
+        <div class="computer tablet only row">
+            <div class="ui inverted fixed menu navbar page grid">
+                <a href="" class="brand item">Project Name</a>
+                <a href="" class="active item">Home</a>             
+                <a href="" class="active item" {{action 'signout'}}>Signout</a>                
+            </div>
+        </div>
+        </div>
+       
+           
+    <div class="ui page grid main">
+        <div class="row">
+            <div class="column padding-reset">
+                <div class="ui large message">
+                    <h1 class="ui huge header">Nodsem Generator Example</h1>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/libs/semantic.min.js" type="text/javascript"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.5.1.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/model/routes.js"></script>
+  <script src="js/controller/logincontroller.js"></script>
+  <script src="tests/runner.js"></script>    
+</body>
+</html>
