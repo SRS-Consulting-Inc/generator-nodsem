@@ -4,7 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 
-var MygeneratorGenerator = yeoman.generators.Base.extend({
+var NodsemGenerator = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
   },
@@ -15,7 +15,7 @@ var MygeneratorGenerator = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the lovely Mygenerator generator!'
+      'Welcome to the Nodsem generator!'
     ));
 
 
@@ -200,4 +200,4 @@ var prompts = [{
   }
 });
 
-module.exports = MygeneratorGenerator;
+module.exports = NodsemGenerator;
