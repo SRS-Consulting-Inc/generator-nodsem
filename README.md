@@ -149,6 +149,8 @@ This folder is generated inside test folder , it will give information about cod
 * * *
 ![generator-nodsem screenshot]   (https://raw.githubusercontent.com/SRS-Consulting-Inc/generator-nodsem/master/vid/nodsem.gif)
 
+After you run grunt analyze
+
 ![generator-nodsem screenshot] 
 (https://raw.githubusercontent.com/SRS-Consulting-Inc/generator-nodsem/master/vid/nodsem1.gif)
 
