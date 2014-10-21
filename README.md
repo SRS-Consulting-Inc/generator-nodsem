@@ -145,6 +145,13 @@ This folder will have code analysis for your project.
 
 This folder is generated inside test folder , it will give information about code coverage of your project.
 
+##### Configuration
+* * *
+https://raw.githubusercontent.com/SRS-Consulting-Inc/generator-nodsem/master/vid/nodsem.gif
+
+https://raw.githubusercontent.com/SRS-Consulting-Inc/generator-nodsem/master/vid/nodsem1.gif
+
+
  
 ##### Configuration 
 * * *
