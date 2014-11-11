@@ -16,4 +16,12 @@ angular.module('clientApp', ['ngRoute'])
     templateUrl: 'js/view/signup.html',
     controller: 'signupCtrl'
   })
+  .when('/forgotpassword', {
+    templateUrl: 'js/view/forgotpassword.html',
+    controller: 'forgotpasswordCtrl'
+  })
+  .when('/changepassword', {
+    templateUrl: 'js/view/changepassword.html',
+    controller: 'changepasswordCtrl'
+  })
 });

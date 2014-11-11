@@ -79,10 +79,11 @@ body{
         <input type="password" placeholder="Password" id="signinpassword">
       </div>
       <div class="ui blue submit button" id="signin-btn" {{action 'signinclick'}}>Login</div>
-      <a href="#">{{#link-to 'signup'}}Not registered Sign up{{/link-to}}</a>
+      </div>
+      <a href="#">{{#link-to 'signup'}}Not registered Sign up{{/link-to}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#">{{#link-to 'forgotpassword'}}Forgot Password{{/link-to}}</a>
     </div>
-  </div>
-  <div class="column">
+   <div class="column">
   </div>
 </div> 
  </script>
@@ -126,6 +127,7 @@ body{
             <div class="ui inverted fixed menu navbar page grid">
                 <a href="" class="brand item">Project Name</a>
                 <a href="" class="active item">Home</a>             
+                <a href="" class="active item" {{action 'changepassword'}}>Change Password</a>
                 <a href="" class="active item" {{action 'signout'}}>Signout</a>                
             </div>
         </div>
@@ -142,6 +144,45 @@ body{
         </div>
     </div>
 </script>
+
+<script type="text/x-handlebars" id="forgotpassword">
+<div class="ui three column grid">
+  <div class="column">
+  </div>
+  <div class="column">
+    <div class="ui fluid form segment">
+     <span style="color:red;" id="validatemessage"></span>
+      <div class="field">
+        <input type="text" placeholder="email" id="forgotpasswordemail">
+      </div>
+      <div class="ui blue submit button" id="forgotpassword-btn" {{action 'forgotpassword'}}>Send Email</div>
+    </div>
+  </div>
+  <div class="column">
+  </div>
+</div>
+</script>
+
+<script type="text/x-handlebars" id="changepassword">
+<div class="ui three column grid">
+  <div class="column">
+  </div>
+  <div class="column">
+    <div class="ui fluid form segment">
+     <span style="color:red;" id="validatemessage"></span>
+      <div class="field">
+        <input type="password" class="form-control" placeholder="New password" id="changepassword">
+      </div>
+      <div class="field">
+        <input type="password" class="form-control" placeholder="Confirm New password" id="confirmchangepassword">
+      </div>
+      <div class="ui blue submit button" id="forgotpassword-btn" {{action 'changeuserpassword'}}>Change Password</div>
+    </div>
+  </div>
+  <div class="column">
+  </div>
+</div>
+</script> 
 
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="js/libs/semantic.min.js" type="text/javascript"></script>

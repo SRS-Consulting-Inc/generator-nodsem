@@ -132,6 +132,8 @@ var prompts = [{
       this.copy('html/angularmain.html', 'public/js/view/main.html');
       this.copy('html/dashboard.html', 'public/js/view/dashboard.html');
       this.copy('html/angularsignup.html', 'public/js/view/signup.html');
+      this.copy('html/semanticforgotpassword.html', 'public/js/view/forgotpassword.html');
+      this.copy('html/semanticchangepassword.html', 'public/js/view/changepassword.html');
       this.copy('AngularGruntfile.js', 'Gruntfile.js');  
 
       }
@@ -148,6 +150,8 @@ var prompts = [{
       this.copy('html/main.html', 'public/js/view/main.html');
       this.copy('html/bootstrapdashboard.html', 'public/js/view/dashboard.html');
       this.copy('html/signup.html', 'public/js/view/signup.html');
+      this.copy('html/bootstrapforgotpassword.html', 'public/js/view/forgotpassword.html');
+      this.copy('html/bootstrapchangepassword.html', 'public/js/view/changepassword.html');
       this.copy('img/avatar.png', 'public/img/avatar.png');
       this.copy('AngularGruntfile.js', 'Gruntfile.js');  
 

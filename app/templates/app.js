@@ -24,6 +24,8 @@ res.redirect("login.html");
 });
 app.post('/signup', services.signup);
 app.post('/signin', services.signin);
+app.post('/forgotpassword', services.forgotpassword);
+app.post('/changepassword', services.changepassword);
 
 app.use(express.bodyParser({uploadDir:'./public/uploads/'}));
 app.use(express.static(__dirname+"/public"));

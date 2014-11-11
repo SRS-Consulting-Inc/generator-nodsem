@@ -41,16 +41,25 @@
      else
       {
         var sessionname=response.sessionname[0].username;
+        var sessionemail=response.sessionname[0].email; 
         setCookie("username", sessionname, 30);
+        setCookie("email", sessionemail, 30);
         $location.path('/dashboard')    
-      }	
+      } 
 
-    });
+    }).error(function(response)
+        {
+            alert(response);
+         });
 
     }            
     };
       $scope.signup = function () {
       $location.path('/signup')
+    };
+
+    $scope.forgotpassword = function () {
+      $location.path('/forgotpassword')
     };
 
     });
@@ -61,7 +70,7 @@
     $scope.signin = function () {
       $location.path('/')
     };
-    
+ 
     //user signup
     $scope.register = function () {
         
@@ -104,7 +113,10 @@
            $location.path('/') 
          }    
               
-      });
+      }).error(function(response)
+        {
+            alert(response);
+         });
 
     }
     }; 
@@ -127,7 +139,114 @@
       $location.path('/')
     };
 
+   $scope.changepassword = function () {
+      $location.path('/changepassword')
+    };
+
     });
+
+    angular.module('clientApp')
+    .controller('forgotpasswordCtrl',
+    function ($scope, $location,$http) {
+     $scope.resetpassword = function () {
+
+    $("#validatemessage").html("");
+
+    var forgotpasswordemail=$("#forgotpasswordemail").val();
+    var reg =/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
+    var text = "";
+    var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 8; i++ )
+      text += charset.charAt(Math.floor(Math.random() * charset.length));
+     var adddetails={};
+
+    adddetails.forgotpasswordemail=forgotpasswordemail;
+    adddetails.newpassword=text;
+
+      if(forgotpasswordemail == "" )
+       {
+
+        $("#validatemessage").html("Enter the required fields");
+       }
+     else if(!reg.test(forgotpasswordemail))
+      {
+        $("#validatemessage").html("Enter valid email");
+      }
+     else
+      {
+
+        $http.post("/forgotpassword",adddetails)
+       .success(function(response) 
+      {
+       
+      if(response.status=="0")
+       {                                        
+          $("#validatemessage").html("Please enter registered email id"); 
+       }
+      else
+       {
+           alert("New password sent to your mail check your inbox"); 
+            $location.path('/') 
+       }  
+
+      }).error(function(response)
+        {
+            alert(response);
+         });
+
+     }
+   };
+
+  });
+
+angular.module('clientApp')
+    .controller('changepasswordCtrl',
+    function ($scope, $location,$http) {
+
+     $scope.changeuserpassword = function () {
+ 
+       $("#validatemessage").html("");
+
+       var useremail=getCookie("email");
+       var changepassword=$("#changepassword").val();
+       var confirmchangepassword=$("#confirmchangepassword").val();
+
+       var adddetails={};
+       adddetails.useremail=useremail;
+       adddetails.userpassword=changepassword;
+
+       if(changepassword == "" || confirmchangepassword == "")
+        {
+
+            $("#validatemessage").html("Enter the required fields");
+        }
+        else if(changepassword != confirmchangepassword)
+        {
+            $("#validatemessage").html("password mismatch");
+        }
+        else
+        {
+
+            $http.post("/changepassword",adddetails)
+     .success(function(response) 
+      {
+
+          alert("Password successfully changed"); 
+          document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+          document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC";  
+           $location.path('/')   
+              
+       }).error(function(response)
+        {
+            alert(response);
+         });
+
+        }  
+     
+    };
+
+});
 
 //set cookie for username
 function setCookie(cname,cvalue,exdays) {
