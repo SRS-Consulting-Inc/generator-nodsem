@@ -1,3 +1,15 @@
+     var nodemailer = require("nodemailer");
+   
+       // Create a SMTP transport object
+      var transport = nodemailer.createTransport("SMTP", {
+        service: 'Gmail',
+        auth: {
+            user: "esseasy@gmail.com",
+            pass: "esssrs!234"
+        }
+    });
+
+
 	var mongo = require('mongodb');
 	var db=require('./databaseoperations');
 
@@ -50,3 +62,78 @@
 	      });
 	    });
 	  }
+
+	   //Forgot password
+    exports.forgotpassword = function(req, res) {
+
+      var forgotpasswordemail=req.body.forgotpasswordemail;
+      var newpassword=req.body.newpassword;
+
+     db.collection('profile', function(err, collection) {
+        collection.find({email:forgotpasswordemail}).toArray(function(err, items) {
+            if(items.length == 0)
+              {            
+                 res.send({status:"0"});
+              }
+             else
+              {
+
+	            db.collection('profile', function(err, collection) {
+	               collection.update(
+	                {  
+	                   email: forgotpasswordemail,                       
+	                 },
+	                 { 
+	                   $set: { "password": newpassword} 
+	                 },
+	                 { upsert: false }                 
+	              );
+	           });
+
+                var mailOptions = {
+		        from:"nodsem<ess@srsconsultinginc.com>",
+		        to:forgotpasswordemail, 
+		        subject: "new password", 
+		        html: "<b>Your password is reseted your new password is "+newpassword+"</b>" // html body    
+                 }  
+	
+		          transport.sendMail(mailOptions, function(error){
+		          if(error){
+		             console.log('Error occured');
+		             console.log(error.message);
+		            return;
+		           }
+		             console.log('Message sent successfully!');
+
+		          });
+
+
+                 res.send({status:"1"}); 
+              }
+	  		    
+	    });	
+	  });
+
+    }
+
+ exports.changepassword = function(req, res) {
+
+     var email=req.body.useremail;
+     var password=req.body.userpassword;    
+
+     db.collection('profile', function(err, collection) {
+	               collection.update(
+	                {  
+	                   email: email,                       
+	                 },
+	                 { 
+	                   $set: { "password": password} 
+	                 },
+	                 { upsert: false }                 
+	              );
+	           });
+            
+                res.send(200);
+    
+ }
+

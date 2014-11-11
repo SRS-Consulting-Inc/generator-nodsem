@@ -31,9 +31,9 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" id="signin-btn" {{action 'signinclick'}}>Sign in</button>
-        <a href="#">{{#link-to 'signup'}}Not registered Sign up{{/link-to}}</a></button>
+        <a href="#">{{#link-to 'signup'}}Not registered Sign up{{/link-to}}</a>&nbsp;&nbsp;
+        <a href="#">{{#link-to 'forgotpassword'}}Forgot password{{/link-to}}</a>
       </form>
-
     </div> <!-- /container -->
 
 </script>
@@ -41,7 +41,6 @@
 <script type="text/x-handlebars" id="signup">
 
  <div class="container">
-
       <form class="form-signin" role="form">
         <span style="color:red;" id="validatemessage"></span>
         <h2 class="form-signin-heading">Please sign up</h2>
@@ -50,9 +49,8 @@
         <input type="text" class="form-control" placeholder="Email address" id="email">
         <input type="password" class="form-control" placeholder="Password" id="password">
         <button class="btn btn-lg btn-primary btn-block" id="signup-btn" {{action 'signupclick'}}>Sign up</button>
-        <a href="#">{{#link-to 'signin'}}Already a member Sign in{{/link-to}}</a></button>
+        <a href="#">{{#link-to 'signin'}}Already a member Sign in{{/link-to}}</a>
       </form>
-
     </div> <!-- /container -->
 
 
@@ -85,7 +83,8 @@
                     <img src="img/avatar.png" alt="user">&nbsp;&nbsp;<span>{{name}}</span>
                       {{/each}}
                 </a>
-              <ul class="dropdown-menu" role="menu">                               
+              <ul class="dropdown-menu" role="menu">
+                <li {{action 'changepassword'}}>Change Password</li>                               
                 <li {{action 'signout'}}>Signout</li>
               </ul>
             </li>
@@ -104,6 +103,27 @@
       
 
 </script>
+
+  <script type="text/x-handlebars" id="forgotpassword">
+      <div class="container">
+      <form class="form-signin" role="form">
+      <span style="color:red;" id="validatemessage"></span>
+      <input type="text" class="form-control" placeholder="email" id="forgotpasswordemail"><br>
+      <button class="btn btn-lg btn-primary btn-block" id="forgotpassword-btn" {{action 'forgotpassword'}}>Send Email</button>
+      </form>
+      </div>
+  </script>
+
+   <script type="text/x-handlebars" id="changepassword">
+      <div class="container">
+      <form class="form-signin" role="form">
+      <span style="color:red;" id="validatemessage"></span>
+      <input type="password" class="form-control" placeholder="New password" id="changepassword">
+      <input type="password" class="form-control" placeholder="Confirm New password" id="confirmchangepassword"><br>
+      <button class="btn btn-lg btn-primary btn-block" id="changepassword-btn" {{action 'changeuserpassword'}}>Change Password</button>
+      </form>
+      </div>
+   </script> 
    
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/libs/bootstrap.min.js"></script>

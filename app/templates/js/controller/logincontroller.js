@@ -97,7 +97,9 @@ signinclick:function()
                 else
                   {
                     var sessionname=data.sessionname[0].username;
+                    var sessionemail=data.sessionname[0].email;     
                     setCookie("username", sessionname, 30);
+                    setCookie("email", sessionemail, 30); 
                     that.transitionToRoute('home');    
                   }
                          
@@ -122,9 +124,129 @@ App.HomeController=Ember.Controller.extend({
          var that=this;  
          document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
          that.transitionToRoute('index');  
+      },
+      changepassword : function(){
+         var that=this;  
+         that.transitionToRoute('changepassword');  
       }
+     
   }
   
+});
+
+App.ForgotpasswordController=Ember.Controller.extend({
+
+  actions: {
+      forgotpassword : function(){
+           var that=this;
+
+          $("#validatemessage").html("");
+
+          var forgotpasswordemail=$("#forgotpasswordemail").val();
+          var reg =/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
+          var text = "";
+          var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+           for( var i=0; i < 8; i++ )
+              text += charset.charAt(Math.floor(Math.random() * charset.length));
+          var adddetails={};
+
+          adddetails.forgotpasswordemail=forgotpasswordemail;
+          adddetails.newpassword=text;
+
+            if(forgotpasswordemail == "" )
+             {
+
+                $("#validatemessage").html("Enter the required fields");
+             }
+          else if(!reg.test(forgotpasswordemail))
+            {
+                $("#validatemessage").html("Enter valid email");
+            }
+           else
+            {
+
+          $.ajax ({
+
+             type: "POST",
+             url:'/forgotpassword', 
+             data:adddetails,                  
+
+             success: function(data) { 
+
+                      if(data.status=="0")
+                      {
+                         $("#validatemessage").html("Please enter registered email id");   
+                      }
+                      else
+                      {
+                        alert("New password sent to your mail check your inbox");
+                        that.transitionToRoute('index');  
+                      }
+                    
+                   },
+              error: function(data) {
+                     alert("Msg: "+ data.status + ": " + data.statusText);
+
+                   }                  
+            }); 
+        }
+
+      }
+  }
+
+  });
+
+App.ChangepasswordController=Ember.Controller.extend({
+
+    actions: {
+      changeuserpassword : function(){
+        var that=this;
+
+        $("#validatemessage").html("");
+
+       var useremail=getCookie("email");
+       var changepassword=$("#changepassword").val();
+       var confirmchangepassword=$("#confirmchangepassword").val();
+
+       var adddetails={};
+       adddetails.useremail=useremail;
+       adddetails.userpassword=changepassword;
+  
+         if(changepassword == "" || confirmchangepassword == "")
+        {
+
+            $("#validatemessage").html("Enter the required fields");
+        }
+        else if(changepassword != confirmchangepassword)
+        {
+            $("#validatemessage").html("password mismatch");
+        }
+        else
+        {
+
+           $.ajax ({
+
+             type: "POST",
+             url:'/changepassword', 
+             data:adddetails,                  
+
+             success: function(data) {
+                     alert("Password successfully changed"); 
+                     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                     document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC";  
+                     that.transitionToRoute('index');                  
+                   },
+              error: function(data) {
+                     alert("Msg: "+ data.status + ": " + data.statusText);
+                   }                  
+            }); 
+        
+        }    
+         
+      }
+     }
+
 });
 
 //set cookie for username
