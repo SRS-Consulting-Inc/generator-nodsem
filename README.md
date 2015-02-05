@@ -40,6 +40,11 @@ Layer | Available Option
 *Documentation* | `Doccu`
 *Code Coverage* | `Instanbul`
 
+##### Nodesem Designer
+
+ To speed up the creation of the Ember / Angular application using we have come up with a WYSIWYG designer. The Designer is in the Beta stage and is at http://www.nodsem.com. Feedback and suggstions are welcome and help us better the product for you.
+ 
+ URL : http://www.nodsem.com
  
 ##### Semantic
 
