@@ -1,14 +1,10 @@
 var express = require('express');
 var services = require('./routes/services');
-  
+var bodyParser=require('body-parser');
 var app = express();
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({extended: true}));
 
-app.configure(function () {
-    app.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
-    app.use(express.bodyParser());
-});
-
-app.configure(function() {
   app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -17,8 +13,7 @@ app.configure(function() {
     next();
   });
   app.set('jsonp callback', true);
-});
- 
+
 app.get('/',function(req,res){
 res.redirect("login.html");
 });
@@ -27,10 +22,9 @@ app.post('/signin', services.signin);
 app.post('/forgotpassword', services.forgotpassword);
 app.post('/changepassword', services.changepassword);
 
-app.use(express.bodyParser({uploadDir:'./public/uploads/'}));
 app.use(express.static(__dirname+"/public"));
 app.use('/coverage', express.static(__dirname +  
 '/../test/coverage/reports'));
-app.use(app.router);
+
 app.listen(3000);
 console.log('Listening on port 3000...');
