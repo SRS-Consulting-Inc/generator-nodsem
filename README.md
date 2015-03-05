@@ -80,6 +80,15 @@ The Grunt ecosystem is huge and it's growing every day with literally hundreds o
 
  
  For more info please look in to http://gruntjs.com/
+ 
+ 
+ ##### Gulp
+
+
+This is one of the task runner for the javascript.It is used for code analysis, code coverage and to generate report for the project.
+
+ 
+ For more info please look in to http://gulpjs.com/
 
  
 ##### Plato 
