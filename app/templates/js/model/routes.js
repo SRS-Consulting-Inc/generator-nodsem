@@ -16,10 +16,39 @@ App.IndexRoute = Ember.Route.extend({
 
 });
 
+App.SigninRoute = Ember.Route.extend({
+  afterModel:function(){
+   var username=getCookie("username");
+   if(username != "")
+      {
+        this.transitionTo("home");
+      } 
+  else{
+      this.transitionTo("signin");
+      }
+
+  }
+
+});
+
+App.SignupRoute = Ember.Route.extend({
+  afterModel:function(){
+   var username=getCookie("username");
+   if(username != "")
+      {
+        this.transitionTo("home");
+      } 
+  else{
+      this.transitionTo("signup");
+      }
+
+  }
+
+});
+
 App.HomeRoute = Ember.Route.extend({
   model:function(){
   
-
    var username=getCookie("username");
    if(username == "")
       {
@@ -28,6 +57,36 @@ App.HomeRoute = Ember.Route.extend({
 
   return [{"name":username}];
  
+  }
+
+});
+
+App.ForgotpasswordRoute = Ember.Route.extend({
+  afterModel:function(){
+   var username=getCookie("username");
+   if(username != "")
+      {
+        this.transitionTo("home");
+      } 
+  else{
+      this.transitionTo("forgotpassword");
+      }
+
+  }
+
+});
+
+App.ChangepasswordRoute = Ember.Route.extend({
+  afterModel:function(){
+   var username=getCookie("username");
+   if(username == "")
+      {
+        this.transitionTo("signin");
+      } 
+  else{
+      this.transitionTo("changepassword");
+      }
+
   }
 
 });

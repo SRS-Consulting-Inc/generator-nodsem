@@ -122,6 +122,14 @@
      var password=req.body.userpassword;    
 
      db.collection('profile', function(err, collection) {
+
+     	       if(err)
+     	       {
+     	          res.sendStatus(400); 	
+     	       }
+     	       else
+     	       {
+
 	               collection.update(
 	                {  
 	                   email: email,                       
@@ -131,9 +139,11 @@
 	                 },
 	                 { upsert: false }                 
 	              );
-	           });
+	          
+                   res.sendStatus(200);
+              }  
             
-                res.send(200);
+             });  
     
  }
 

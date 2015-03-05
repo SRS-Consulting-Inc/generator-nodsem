@@ -45,6 +45,18 @@ var prompts = [{
   },
   {
     type: 'list',
+    name: 'taskrunner',
+    message: 'which taskrunner do you like to use?',
+    choices: [{
+      name: 'grunt',
+      value: 2
+    }, {
+      name: 'gulp',
+      value: 1
+    }]
+  },
+  {
+    type: 'list',
     name: 'dbselect',
     message: 'which database do you like to use?',
     choices: [{
@@ -64,7 +76,9 @@ var prompts = [{
     this.angulurjs = (answers.uiselect === 2);      
     this.emberjs = (answers.uiselect === 1);   
     this.semanticui = (answers.ui === 2);
-    this.twitterbootstrap = (answers.ui === 1);  
+    this.twitterbootstrap = (answers.ui === 1);
+    this.grunt = (answers.taskrunner === 2);
+    this.gulp =  (answers.taskrunner === 1);  
     this.mysql = (answers.dbselect === 3);
     this.sqlite = (answers.dbselect === 2);  
     this.mongodb = (answers.dbselect === 1);     
@@ -94,8 +108,6 @@ var prompts = [{
       this.copy('tests/semantictests.js', 'public/tests/tests.js');
       this.copy('tests/vendor/qunit-1.12.0.css', 'public/tests/vendor/qunit-1.12.0.css');
       this.copy('tests/vendor/qunit-1.12.0.js', 'public/tests/vendor/qunit-1.12.0.js');
-      this.copy('Gruntfile.js', 'Gruntfile.js');  
-
       }
 
 
@@ -115,14 +127,12 @@ var prompts = [{
       this.copy('tests/bootstraptests.js', 'public/tests/tests.js');
       this.copy('tests/vendor/qunit-1.12.0.css', 'public/tests/vendor/qunit-1.12.0.css');
       this.copy('tests/vendor/qunit-1.12.0.js', 'public/tests/vendor/qunit-1.12.0.js');
-      this.copy('img/avatar.png', 'public/img/avatar.png');
-      this.copy('Gruntfile.js', 'Gruntfile.js');  
+      this.copy('img/avatar.png', 'public/img/avatar.png');  
 
       }
  
        if(this.angulurjs && this.semanticui)
       {
-
 
       this.copy('html/angularsemantic.html', 'public/login.html');
       this.copy('js/angularapp.js', 'public/js/app.js');
@@ -134,8 +144,7 @@ var prompts = [{
       this.copy('html/angularsignup.html', 'public/js/view/signup.html');
       this.copy('html/semanticforgotpassword.html', 'public/js/view/forgotpassword.html');
       this.copy('html/semanticchangepassword.html', 'public/js/view/changepassword.html');
-      this.copy('AngularGruntfile.js', 'Gruntfile.js');  
-
+       
       }
 
        if(this.angulurjs && this.twitterbootstrap)
@@ -153,8 +162,7 @@ var prompts = [{
       this.copy('html/bootstrapforgotpassword.html', 'public/js/view/forgotpassword.html');
       this.copy('html/bootstrapchangepassword.html', 'public/js/view/changepassword.html');
       this.copy('img/avatar.png', 'public/img/avatar.png');
-      this.copy('AngularGruntfile.js', 'Gruntfile.js');  
-
+  
       }
 
       if (this.mysql) 
@@ -187,11 +195,38 @@ var prompts = [{
           this.copy('js/libs/bootstrap.min.js', 'public/js/libs/bootstrap.min.js');     
      }
 
-   
+     if (this.emberjs && this.grunt) 
+     {
+      this.copy('Gruntfile.js', 'Gruntfile.js'); 
       this.copy('test.js', 'test/test.js');
-      this.copy('require_helper.js', 'test/require_helper.js');            
-      this.dest.mkdir('routes');
+      this.copy('require_helper.js', 'test/require_helper.js');
       this.copy('app.js', 'app.js');
+     }
+
+     if (this.angulurjs && this.grunt) 
+     {
+      this.copy('AngularGruntfile.js', 'Gruntfile.js');
+      this.copy('test.js', 'test/test.js');
+      this.copy('require_helper.js', 'test/require_helper.js');  
+      this.copy('app.js', 'app.js');
+     }
+
+     if (this.emberjs && this.gulp) 
+     {
+      this.copy('Embergulpfile.js', 'gulpfile.js');
+      this.copy('gulptest.js', 'gulp/test.js');
+      this.copy('gulpapp.js', 'app.js');
+     }
+
+     if (this.angulurjs && this.gulp) 
+     {
+      this.copy('Angulurgulpfile.js', 'gulpfile.js');
+      this.copy('gulptest.js', 'gulp/test.js'); 
+      this.copy('gulpapp.js', 'app.js');  
+     }
+
+               
+      this.dest.mkdir('routes');
       this.copy('package.json', 'package.json');  
       this.installDependencies();
 

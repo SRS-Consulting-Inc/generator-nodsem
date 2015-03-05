@@ -134,11 +134,11 @@
 
        ).success(function() {
 
-         res.send(200); 
+         res.sendStatus(200); 
      
        }).error(function(err) { 
       
-         res.send(400); 
+         res.sendStatus(400); 
         });
 
   }

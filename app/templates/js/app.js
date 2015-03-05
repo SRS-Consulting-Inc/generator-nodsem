@@ -1,4 +1,4 @@
-
+var App;
 App = Ember.Application.create({
   ready:function(){
   }
