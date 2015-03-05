@@ -82,9 +82,9 @@ The Grunt ecosystem is huge and it's growing every day with literally hundreds o
  For more info please look in to http://gruntjs.com/
  
  
- ##### Gulp
-
-
+##### Gulp
+ 
+ 
 This is one of the task runner for the javascript.It is used for code analysis, code coverage and to generate report for the project.
 
  
@@ -168,6 +168,10 @@ After you run grunt analyze
 ![generator-nodsem screenshot] 
 (https://raw.githubusercontent.com/SRS-Consulting-Inc/generator-nodsem/master/vid/nodsem1.gif)
 
+
+##### Running the Gulp file
+* * *
+Navigate to the project folder and run gulp, then folder will create with a name called gulpcodecoverage in your project folder, It gives report of codecoverage and jshint generated for your project.
 
  
 ##### Configuration 
