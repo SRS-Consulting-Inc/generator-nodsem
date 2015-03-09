@@ -63,6 +63,7 @@
 	    });
 	  }
 
+  
 	   //Forgot password
     exports.forgotpassword = function(req, res) {
 
@@ -78,17 +79,14 @@
              else
               {
 
-	            db.collection('profile', function(err, collection) {
-	               collection.update(
-	                {  
-	                   email: forgotpasswordemail,                       
-	                 },
-	                 { 
-	                   $set: { "password": newpassword} 
-	                 },
-	                 { upsert: false }                 
-	              );
-	           });
+           db.collection('profile', function(err, collection) {			  
+           collection.update({email:forgotpasswordemail},{$set:{password:newpassword}},{ upsert: false },function(err, result) {	
+		   if (err) {
+		     res.sendStatus(400);
+		    } 	
+	    
+	       });
+	     });
 
                 var mailOptions = {
 		        from:"nodsem<ess@srsconsultinginc.com>",
@@ -121,29 +119,21 @@
      var email=req.body.useremail;
      var password=req.body.userpassword;    
 
-     db.collection('profile', function(err, collection) {
-
-     	       if(err)
-     	       {
-     	          res.sendStatus(400); 	
-     	       }
-     	       else
-     	       {
-
-	               collection.update(
-	                {  
-	                   email: email,                       
-	                 },
-	                 { 
-	                   $set: { "password": password} 
-	                 },
-	                 { upsert: false }                 
-	              );
-	          
-                   res.sendStatus(200);
-              }  
-            
-             });  
-    
+       db.collection('profile', function(err, collection) {			  
+           collection.update({email:email},{$set:{password:password}},{ upsert: false },function(err, result) {	
+		   if (err) {
+		     res.sendStatus(400);
+		    } 
+		    else
+		    {
+               res.sendStatus(200);   
+		    }	
+	    
+	       });
+	     });
  }
 
+    
+	
+
+ 
