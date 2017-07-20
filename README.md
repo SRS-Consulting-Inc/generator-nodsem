@@ -70,7 +70,7 @@ Bootstrap is a free collection of tools for creating websites and web applicatio
 Mocha is a feature-rich JavaScript test framework running on node.js and the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases.
 
  
- For more info please look in to http://visionmedia.github.io/mocha/
+ For more info please look in to http://mochajs.org/
 
  
 ##### Grunt
